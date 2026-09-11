@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+    :root {
+        --background: 220 24% 7%;
+        --foreground: 220 14% 96%;
+        --card: 222 25% 12%;
+        --card-foreground: 220 14% 96%;
+        --popover: 222 25% 12%;
+        --popover-foreground: 220 14% 96%;
+        --primary: 33 71% 63%;
+        --primary-foreground: 220 24% 7%;
+        --secondary: 222 20% 18%;
+        --secondary-foreground: 220 14% 96%;
+        --muted: 222 15% 22%;
+        --muted-foreground: 220 10% 62%;
+        --accent: 222 20% 18%;
+        --accent-foreground: 220 14% 96%;
+        --destructive: 20 90% 53%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 222 18% 20%;
+        --input: 222 18% 20%;
+        --ring: 33 71% 63%;
+        --chart-1: 33 71% 63%;
+        --chart-2: 160 84% 39%;
+        --chart-3: 20 90% 53%;
+        --chart-4: 210 90% 60%;
+        --chart-5: 280 65% 60%;
+        --radius: 0.25rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    .font-data {
+        font-family: 'Rajdhani', sans-serif;
+        font-feature-settings: "tnum";
+        letter-spacing: 0.02em;
+    }
+}
+
+.hud-panel {
+    background-color: #171C26;
+    border: 1px solid rgba(227, 167, 92, 0.18);
+}
+
+.gold-glow {
+    filter: drop-shadow(0 0 8px rgba(227, 167, 92, 0.45));
+}
+
+.grid-noise {
+    background-image:
+        linear-gradient(rgba(227,167,92,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(227,167,92,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0E1117; }
+::-webkit-scrollbar-thumb { background: #2a3446; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #E3A75C; }
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 4px;
+    background: #2a3446;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #E3A75C;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(227,167,92,0.6);
+}
