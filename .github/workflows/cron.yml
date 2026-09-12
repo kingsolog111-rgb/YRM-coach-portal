@@ -1,0 +1,30 @@
+name: YRM Coach Portal Cron
+
+on:
+  schedule:
+    # Daily reminders every day at 18:00 UTC
+    - cron: "0 18 * * *"
+    # Weekly reports every Monday at 06:00 UTC
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  daily-reminders:
+    if: github.event.schedule == '0 18 * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger daily reminders
+        run: |
+          curl -sf -X POST "https://yrm-coach-backend.onrender.com/api/cron/daily-reminders" \
+            -H "Authorization: Bearer ${{ secrets.WEBHOOK_CRON_SECRET }}" \
+            -H "X-Webhook-Id: daily-${{ github.run_id }}"
+
+  weekly-reports:
+    if: github.event.schedule == '0 6 * * 1' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger weekly reports
+        run: |
+          curl -sf -X POST "https://yrm-coach-backend.onrender.com/api/cron/weekly-reports" \
+            -H "Authorization: Bearer ${{ secrets.WEBHOOK_CRON_SECRET }}" \
+            -H "X-Webhook-Id: weekly-${{ github.run_id }}"
